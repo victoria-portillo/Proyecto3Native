@@ -4,7 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 
-export default class posteo extends Component {
+export default class Posteo extends Component {
     constructor(props) {
         super(props);
         this.state = {
