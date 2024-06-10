@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-class formularioRegistro extends Component {
+class FormularioRegistro extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
-  
+
   render() {
     const {
       nombre,
@@ -15,6 +15,7 @@ class formularioRegistro extends Component {
       errores,
       correoExiste,
     } = this.props.state;
+
     return (
       <View>
         <Text style={styles.title}>Regístrate en Travelgram</Text>
@@ -28,10 +29,8 @@ class formularioRegistro extends Component {
               this.props.handleInputChange('nombre', text)
             }
           />
-          {errores.errorNombre!== '' ? (
+          {errores.errorNombre !== '' && (
             <Text style={styles.errorText}>{errores.errorNombre}</Text>
-          ) : (
-            ''
           )}
 
           <TextInput
@@ -43,15 +42,11 @@ class formularioRegistro extends Component {
               this.props.handleInputChange('correo', text)
             }
           />
-          {errores.errorCorreo !== '' ? (
+          {errores.errorCorreo !== '' && (
             <Text style={styles.errorText}>{errores.errorCorreo}</Text>
-          ) : (
-            ''
           )}
-          {correoExiste !== '' ? (
+          {correoExiste !== '' && (
             <Text style={styles.errorText}>{correoExiste}</Text>
-          ) : (
-            ''
           )}
 
           <TextInput
@@ -73,10 +68,8 @@ class formularioRegistro extends Component {
               this.props.handleInputChange('clave', text)
             }
           />
-          {errores.errorClave !== '' ? (
+          {errores.errorClave !== '' && (
             <Text style={styles.errorText}>{errores.errorClave}</Text>
-          ) : (
-            ''
           )}
 
           <Text style={styles.textLink}>
@@ -88,9 +81,7 @@ class formularioRegistro extends Component {
             </TouchableOpacity>
           </Text>
 
-          {clave === '' || correo === '' || nombre === '' ? (
-            ''
-          ) : (
+          {clave !== '' && correo !== '' && nombre !== '' && (
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 onPress={() => this.props.registrarUsuario(nombre, correo, clave, true)}
@@ -100,9 +91,9 @@ class formularioRegistro extends Component {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
-                  this.props.abrirCamara()
+                  this.props.abrirCamara();
                 }}
-                style={[styles.btn, { marginTop: 16 }]}  
+                style={[styles.btn, { marginTop: 16 }]}
               >
                 <Text style={styles.textBtn}>Tomar foto para tu perfil!</Text>
               </TouchableOpacity>
@@ -116,30 +107,42 @@ class formularioRegistro extends Component {
 
 const styles = StyleSheet.create({
   title: {
-    
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
   input: {
-   
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    color: 'white',
   },
   btn: {
-    
+    backgroundColor: '#5F866F',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
   },
   buttonContainer: {
-    
+    marginTop: 20,
   },
   textBtn: {
-   
-
+    color: 'white',
+    fontWeight: 'bold',
   },
   textLink: {
-    
+    marginTop: 20,
+    textAlign: 'center',
   },
   link: {
-    
+    color: 'blue',
   },
   errorText: {
-    
+    color: 'red',
+    marginBottom: 10,
   },
 });
 
-export default formularioRegistro;
+export default FormularioRegistro;
