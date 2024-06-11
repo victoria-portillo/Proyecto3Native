@@ -35,6 +35,7 @@ export default function MainNavigation() {
           component={TabNavigation}
           options={{ headerShown: false }}
         />
+        
 
 </Stack.Navigator>
     </NavigationContainer>

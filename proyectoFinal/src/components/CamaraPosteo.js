@@ -1,95 +1,115 @@
-import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { Camera } from 'expo-camera';
-import { storage } from '../firebase/config';
+import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import React, { Component } from 'react'
+import { Camera } from 'expo-camera/legacy'
+import { storage } from '../firebase/config'
 
 export default class CamaraPosteo extends Component {
-    constructor(props) {
-        super(props);
+    constructor(props){
+        super(props)
         this.state = {
-            abrirCamara: true,
-            permisos: false,
-            urlTemp: '',
-        };
-        this.metodosDeCamara = null;
-    }
-
-    async componentDidMount() {
-        const { status } = await Camera.requestCameraPermissionsAsync();
-        this.setState({ permisos: status === 'granted' });
-    }
-
-    tomarFoto = async () => {
-        if (this.metodosDeCamara) {
-            let foto = await this.metodosDeCamara.takePictureAsync();
-            this.setState({ urlTemp: foto.uri, abrirCamara: false });
+            mostrarCamara: true,
+            permisos:false,
+            urlTemp:'',
         }
+        this.metodosDeCamara = null  
     }
 
-    aceptarFoto = () => {
+    componentDidMount(){
+        Camera.requestCameraPermissionsAsync()
+        .then((resp)=> this.setState({permisos: true}))
+        .catch((err) => console.log(err))
+    }
+
+    tomarFoto(){
+        this.metodosDeCamara.takePictureAsync()
+        .then(imgTemp => this.setState({
+            urlTemp: imgTemp.uri,
+            mostrarCamara: false
+        }))
+        .catch(err => console.log(err))
+    }
+
+    aceptarFoto(){
         fetch(this.state.urlTemp)
-            .then(resp => resp.blob())
-            .then(img => {
-                const ref = storage.ref(`fotos/${Date.now()}.jpg`);
-                ref.put(img).then(() => {
-                    ref.getDownloadURL().then(url => this.props.actualizarFotourl(url));
-                });
+        .then(resp => resp.blob())
+        .then(img => {
+            const ref = storage.ref(`fotos/${Date.now()}.jpg`)
+            ref.put(img)
+            .then(resp =>{
+                ref.getDownloadURL()
+                .then((url)=> this.props.actualizarFotourl(url))
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+        })
+        .catch(err=> console.log(err))
+
     }
 
-    rechazarFoto = () => {
+    rechazarFoto(){
         this.setState({
-            abrirCamara: true,
+            mostrarCamara: true,
             urlTemp: ''
-        });
+        })
     }
 
-    render() {
-        if (this.state.permisos === null) {
-            return <View />;
+  render() {
+    return (
+      <View style={styles.container}>
+        {
+            this.state.permisos && this.state.mostrarCamara ?
+            <>
+                <Camera
+                    style= {styles.camara}
+                    type={Camera.Constants.Type.back}
+                    ref={(metodosDeCamara)=> this.metodosDeCamara = metodosDeCamara}
+                />
+                <TouchableOpacity
+                    onPress={() => this.tomarFoto()}
+                >
+                    <Text style={styles.textoAceptar}>Tomar foto</Text>
+                </TouchableOpacity>
+            </>
+            : this.state.permisos && this.state.mostrarCamara === false ?
+                <>
+                    <Image
+                        source={{uri : this.state.urlTemp}}
+                        style={styles.img}
+                        resizeMode={'contain'}
+                    />
+                    <TouchableOpacity
+                        onPress={()=> this.aceptarFoto()}
+                    >
+                        <Text style={styles.textoAceptar}>
+                            Aceptar Foto
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={()=> this.rechazarFoto()}
+                    >
+                        <Text style={styles.textoAceptar}>
+                            Rechazar Foto
+                        </Text>
+                    </TouchableOpacity>
+                </>
+            :
+            <Text>No tienes permisos para usar la camara</Text>
+
         }
-        if (this.state.permisos === false) {
-            return <Text>No tienes permisos para usar la cámara</Text>;
-        }
-        return (
-            <View style={styles.container}>
-                {this.state.abrirCamara ? (
-                    <>
-                        <Camera
-                            style={styles.camara}
-                            type={Camera.Constants.Type.back}
-                            ref={ref => this.metodosDeCamara = ref}
-                        />
-                        <TouchableOpacity onPress={this.tomarFoto}>
-                            <Text style={styles.textoAceptar}>Tomar foto</Text>
-                        </TouchableOpacity>
-                    </>
-                ) : (
-                    <>
-                        <Image source={{ uri: this.state.urlTemp }} style={styles.img} resizeMode={'contain'} />
-                        <TouchableOpacity onPress={this.aceptarFoto}>
-                            <Text style={styles.textoAceptar}>Aceptar Foto</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={this.rechazarFoto}>
-                            <Text style={styles.textoAceptar}>Rechazar Foto</Text>
-                        </TouchableOpacity>
-                    </>
-                )}
-            </View>
-        );
-    }
+       
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
+    container:{
+        flex:1,
     },
     camara: {
-        flex: 1,
-        width: '100%',
+        flex:1,
+        width: 500, 
     },
-    img: {
+    img:{
         height: 500,
         width: 500,
     },
@@ -100,6 +120,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 10,
         marginTop: 15,
-        textAlign: 'center',
     }
-});
+})
