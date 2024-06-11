@@ -2,6 +2,8 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Home from '../screens/Home'
+import PosteoNuevo from '../screens/PosteoNuevo'
+
 
 const Tab = createBottomTabNavigator()
 
@@ -13,6 +15,14 @@ export default function TabNavigation() {
         component={Home}
         options={{
             headerShown:false        }}
+        />
+
+<Tab.Screen 
+        name='PosteoNuevo' 
+        component={PosteoNuevo}
+        options={{
+            headerShown:false
+        }}
         />
             </Tab.Navigator>
   )

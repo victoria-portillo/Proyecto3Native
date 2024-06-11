@@ -1,6 +1,7 @@
 import { Text, View, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import React, { Component } from 'react'
 import { db, auth } from '../firebase/config'
+import CamaraPosteo from '../components/CamaraPosteo';
 
 export default class PosteoNuevo extends Component {
     constructor(props){
@@ -49,7 +50,7 @@ export default class PosteoNuevo extends Component {
           {
             this.state.paso1 ?
               <View style={styles.cameraContainer}>
-                <CamaraPost
+                <CamaraPosteo
                   actualizarFotourl={(url) => this.actualizarFotourl(url)}
                 />
               </View>

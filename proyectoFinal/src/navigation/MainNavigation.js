@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Registro from '../screens/Registro';
 import TabNavigation from './TabNavigation';
+import PosteoNuevo from '../screens/PosteoNuevo';
 
 
 const Stack = createNativeStackNavigator();
@@ -24,6 +25,7 @@ export default function MainNavigation() {
           component={TabNavigation}
           options={{ headerShown: false }}
         />
+        
 
 </Stack.Navigator>
     </NavigationContainer>
