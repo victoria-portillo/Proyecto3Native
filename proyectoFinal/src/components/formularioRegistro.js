@@ -89,14 +89,7 @@ class FormularioRegistro extends Component {
               >
                 <Text style={styles.textBtn}>Regístrarme</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  this.props.abrirCamara();
-                }}
-                style={[styles.btn, { marginTop: 16 }]}
-              >
-                <Text style={styles.textBtn}>Tomar foto para tu perfil!</Text>
-              </TouchableOpacity>
+              
             </View>
           )}
         </View>

@@ -51,6 +51,7 @@ export default class Registro extends Component {
                         .then((resp) => {
                             this.setState({
                                 usuarioId: resp.id,
+                                paso1:false,
                                 nombre: '',
                                 correo: '',
                                 clave: '',
@@ -62,10 +63,6 @@ export default class Registro extends Component {
                                     errorCorreo: '',
                                 },
                                 correoExiste: '',
-                            }, () => {
-                                if (redirigir) {
-                                    this.props.navigation.navigate('TabNavigation');
-                                }
                             });
                         })
                 })
@@ -77,7 +74,8 @@ export default class Registro extends Component {
     };
 
     actualizarFotourl = (url) => {
-        this.setState({ fotoPerfil: url, paso1: true }, () => {
+        this.setState({ fotoPerfil: url }, () => {
+            console.log('state log', this.state)
             this.guardarImagen(url);
         });
     };
