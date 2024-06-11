@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import React, { Component } from 'react'
 import { db, auth } from '../firebase/config'
-import CamaraPosteo from "../components/CamaraPosteo"
+import CamaraPosteo from '../components/CamaraPosteo';
 
 export default class PosteoNuevo extends Component {
   constructor(props){
