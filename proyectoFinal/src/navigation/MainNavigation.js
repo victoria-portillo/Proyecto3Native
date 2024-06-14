@@ -4,8 +4,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Registro from '../screens/Registro';
 import TabNavigation from './TabNavigation';
-import Login from '../screens/Login'
-import Home from '../screens/Home'
+import Login from '../screens/Login';
+import Home from '../screens/Home';
+import CambioClave from '../screens/CambioClave';
+import EditarPerfil from '../screens/EditarPerfil'; 
 
 const Stack = createNativeStackNavigator();
 
@@ -35,7 +37,16 @@ export default function MainNavigation() {
           component={TabNavigation}
           options={{ headerShown: false }}
         />
-        
+
+<Stack.Screen
+          name='CambioClave'
+          component={CambioClave}
+        />
+        <Stack.Screen
+          name='EditarPerfil' 
+          component={EditarPerfil}  
+        />
+      
 
 </Stack.Navigator>
     </NavigationContainer>

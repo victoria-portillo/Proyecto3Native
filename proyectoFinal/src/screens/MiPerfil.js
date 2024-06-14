@@ -16,7 +16,7 @@ export default class MiPerfil extends Component {
 
   componentDidMount() {
     db.collection('usuarios')
-      .where('owner', '==', auth.currentUser.correo)
+      .where('owner', '==', auth.currentUser.email)
       .onSnapshot((docs) => {
         let datos = [];
         docs.forEach((doc) => {
@@ -32,7 +32,7 @@ export default class MiPerfil extends Component {
       });
 
     db.collection('posteos')
-      .where('owner', '==', auth.currentUser.correo)
+      .where('owner', '==', auth.currentUser.email)
       .onSnapshot((docs) => {
         let datos = [];
         docs.forEach((doc) => {
