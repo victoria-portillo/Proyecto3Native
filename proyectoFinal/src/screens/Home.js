@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity, StyleSheet, Image, FlatList, ActivityIndicator } from 'react-native'
 import React, { Component } from 'react'
 import { db } from '../firebase/config'
-import Posteo from '../components/posteo'
+import Posteo from '../components/Posteo'
 
 export default class Home extends Component {
     constructor(props) {

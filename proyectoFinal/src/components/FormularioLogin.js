@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default class Login extends Component {
+export default class FormularioLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
