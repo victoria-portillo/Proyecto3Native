@@ -1,27 +1,50 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { auth } from '../firebase/config';
 
 export default class FormularioLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mail: '',
-            password: '',
-            emailError: '',
-            passwordError: '',
+            correo: '',
+            clave: '',
+            errorCorreo: '',
+            claveError: '',
             generalError: '',
             allFieldsCompleted: false,
         };
     }
 
-    actualizarEstadoCampos = () => {
-        const { mail, password } = this.state;
-        this.setState({ allFieldsCompleted: mail !== '' && password !== '' });
+    loguearUsuario = (correo, clave) => {
+        this.setState({
+            errorCorreo: '',
+            claveError: '',
+            generalError: '',
+        });
+
+        if (!correo || !clave) {
+            this.setState({ generalError: 'Por favor, completa todos los campos.' });
+        } else {
+            auth
+                .signInWithEmailAndPassword(correo, clave)
+                .then((user) => {
+                    this.props.navigation.navigate('Home');
+                })
+                .catch((error) => {
+                    if (error.code === 'auth/invalid-email') {
+                        this.setState({ errorCorreo: 'El correo electrónico es incorrecto.' });
+                    } else if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                        this.setState({ claveError: 'Contraseña incorrecta. Por favor, inténtalo de nuevo.' });
+                    } else {
+                        this.setState({ generalError: 'Error al iniciar sesión. Por favor, inténtalo de nuevo.' });
+                    }
+                });
+        }
     };
 
-    loguearUsuario = (mail, password) => {
-       
-        this.props.navigation.navigate('Home');
+    actualizarEstadoCampos = () => {
+        const { correo, clave } = this.state;
+        this.setState({ allFieldsCompleted: correo !== '' && clave !== '' });
     };
 
     render() {
@@ -33,29 +56,29 @@ export default class FormularioLogin extends Component {
                         style={styles.control}
                         placeholder="Ingresa tu email"
                         keyboardType="email-address"
-                        value={this.state.mail}
+                        value={this.state.correo}
                         onChangeText={(text) => {
-                            this.setState({ mail: text });
+                            this.setState({ correo: text });
                             this.actualizarEstadoCampos();
                         }}
                     />
-                    {this.state.emailError && (
-                        <Text style={styles.errorMessage}>{this.state.emailError}</Text>
+                    {this.state.errorCorreo && (
+                        <Text style={styles.errorMessage}>{this.state.errorCorreo}</Text>
                     )}
 
                     <TextInput
                         style={styles.control}
                         placeholder="Ingresa tu contraseña"
                         keyboardType="default"
-                        value={this.state.password}
+                        value={this.state.clave}
                         secureTextEntry={true}
                         onChangeText={(text) => {
-                            this.setState({ password: text });
+                            this.setState({ clave: text });
                             this.actualizarEstadoCampos();
                         }}
                     />
-                    {this.state.passwordError && (
-                        <Text style={styles.errorMessage}>{this.state.passwordError}</Text>
+                    {this.state.claveError && (
+                        <Text style={styles.errorMessage}>{this.state.claveError}</Text>
                     )}
 
                     {this.state.generalError && (
@@ -63,7 +86,7 @@ export default class FormularioLogin extends Component {
                     )}
 
                     <TouchableOpacity
-                        onPress={() => this.loguearUsuario(this.state.mail, this.state.password)}
+                        onPress={() => this.loguearUsuario(this.state.correo, this.state.clave)}
                         disabled={!this.state.allFieldsCompleted}
                         style={[
                             styles.button,
@@ -133,5 +156,3 @@ const styles = StyleSheet.create({
         color: '#007bff',
     },
 });
-
-
