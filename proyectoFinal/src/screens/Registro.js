@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { auth, db } from '../firebase/config';
-import FormularioRegistro from '../components/formularioRegistro';
+import FormularioRegistro from '../components/FormularioRegistro';
 import CamaraPosteo from '../components/CamaraPosteo';
 
 export default class Registro extends Component {
