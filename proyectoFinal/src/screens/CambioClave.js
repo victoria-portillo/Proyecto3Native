@@ -11,7 +11,7 @@ const CambioClave = ({ navigation }) => {
   const handleCambiarClave = async () => {
     try {
       const user = auth.currentUser;
-      const credential = firebase.auth.EmailAuthProvider.credential(user.correo, claveActual);
+      const credential = firebase.auth.EmailAuthProvider.credential(user.email, claveActual);
       await user.reauthenticateWithCredential(credential);
       await user.updatePassword(nuevaClave);
 
@@ -41,7 +41,6 @@ const CambioClave = ({ navigation }) => {
         onChangeText={(text) => setNuevaClave(text)}
       />
      <TouchableOpacity onPress={() => { 
-        console.log('Botón Cambiar Contraseña presionando');
         handleCambiarClave(); }} style={styles.button}>
         <Text>Cambiar Contraseña</Text>
         </TouchableOpacity>

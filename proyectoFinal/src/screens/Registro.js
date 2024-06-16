@@ -23,6 +23,20 @@ export default class Registro extends Component {
         };
     }
 
+    
+    componentDidMount() {
+        this.focusListener = this.props.navigation.addListener('focus', () => {
+            this.setState({ paso1: true });
+        });
+    }
+
+    componentWillUnmount() {
+        if (this.focusListener) {
+            this.focusListener();
+        }
+    }
+
+
     registrarUsuario = (nombre, correo, clave, redirigir) => {
         if (nombre === '') {
             this.setState({

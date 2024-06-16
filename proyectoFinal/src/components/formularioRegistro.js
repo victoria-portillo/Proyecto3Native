@@ -89,7 +89,6 @@ class FormularioRegistro extends Component {
               >
                 <Text style={styles.textBtn}>Regístrarme</Text>
               </TouchableOpacity>
-              
             </View>
           )}
         </View>

@@ -82,7 +82,7 @@ export default class MiPerfil extends Component {
 
   logout = () => {
     auth.signOut();
-    this.props.navigation.navigate('Registro');
+    this.props.navigation.navigate('Login');
   }
 
   handleChangePassword = () => {
