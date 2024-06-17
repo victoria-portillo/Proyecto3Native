@@ -8,6 +8,8 @@ import Login from '../screens/Login';
 import Home from '../screens/Home';
 import CambioClave from '../screens/CambioClave';
 import EditarPerfil from '../screens/EditarPerfil'; 
+import Comentarios from '../screens/Comentarios';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +39,10 @@ export default function MainNavigation() {
           component={TabNavigation}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name='Comentarios'
+          component={Comentarios}
+        /> 
 
 <Stack.Screen
           name='CambioClave'
