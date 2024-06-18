@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { auth } from '../firebase/config';
+import TabNavigation from '../navigation/TabNavigation';
 
 export default class FormularioLogin extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ export default class FormularioLogin extends Component {
             auth
                 .signInWithEmailAndPassword(correo, clave)
                 .then((user) => {
-                    this.props.navigation.navigate('Home');
+                    this.props.navigation.navigate(TabNavigation);
                 })
                 .catch((error) => {
                     if (error.code === 'auth/invalid-email') {
