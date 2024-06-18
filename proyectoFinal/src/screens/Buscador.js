@@ -49,7 +49,7 @@ export default class Buscador extends Component {
     owner == auth.currentUser.email ?
       this.props.navigation.navigate('MiPerfil')
       :
-      this.props.navigation.navigate('PerfilUsuario', { user: owner })
+      this.props.navigation.navigate('Usuario', { user: owner })
   }
 
   render() {

@@ -27,7 +27,7 @@ export default class Posteo extends Component {
     irAlPerfil() {
         this.props.data.owner === auth.currentUser.correo
           ? this.props.navigation.navigate('miPerfil')
-          : this.props.navigation.navigate('perfilUsuario', { user: this.props.data.owner });
+          : this.props.navigation.navigate('Usuario', { user: this.props.data.owner });
     }
 
     render() {

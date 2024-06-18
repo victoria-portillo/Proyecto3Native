@@ -9,6 +9,7 @@ import Home from '../screens/Home';
 import CambioClave from '../screens/CambioClave';
 import EditarPerfil from '../screens/EditarPerfil'; 
 import Comentarios from '../screens/Comentarios';
+import Usuario from '../screens/Usuario';
 
 
 const Stack = createNativeStackNavigator();
@@ -51,6 +52,10 @@ export default function MainNavigation() {
         <Stack.Screen
           name='EditarPerfil' 
           component={EditarPerfil}  
+        />
+<Stack.Screen
+          name='Usuario'
+          component={Usuario}
         />
       
 
