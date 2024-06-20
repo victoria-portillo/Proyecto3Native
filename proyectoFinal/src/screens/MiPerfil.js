@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, FlatList, Image, Modal, Pressable, Alert } from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, TouchableOpacity, StyleSheet, FlatList, Image, Modal, Pressable } from 'react-native';
 import { auth, db } from '../firebase/config';
 import Posteo from '../components/Posteo';
 
@@ -96,78 +96,60 @@ export default class MiPerfil extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.postsTitle}>Tu perfil</Text>
-        <View style={styles.profileInfo}>
-          <FlatList
-            data={this.state.usuarios}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <View>
-                <Text style={styles.username}>{item.data.nombre}</Text>
-                <Image source={{ uri: item.data.fotoPerfil }} style={styles.profileImage} />
-                <Text style={styles.mail}>{item.data.owner}</Text>
-                <Text style={styles.minibio}>{item.data.biografia}</Text>
-                <TouchableOpacity onPress={this.handleEditProfile}>
-                  <Text style={styles.editProfileButton}>Editar Perfil</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          />
-        </View>
+        <Text style={styles.title}>Tu perfil</Text>
+        <FlatList
+          data={this.state.usuarios}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.profileInfo}>
+              <Image source={{ uri: item.data.fotoPerfil }} style={styles.profileImage} />
+              <Text style={styles.username}>{item.data.nombre}</Text>
+              <Text style={styles.mail}>{item.data.owner}</Text>
+              <Text style={styles.minibio}>{item.data.biografia}</Text>
+              <TouchableOpacity style={styles.editProfileButton} onPress={this.handleEditProfile}>
+                <Text style={styles.editProfileButtonText}>Editar Perfil</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        />
 
-        <View style={styles.posts}>
-          <Text style={styles.postsTitle}>Tus posteos</Text>
-          <Text style={styles.cantidadPosteos}>Cantidad de posteos: {this.state.posteos.length}</Text>
-          <View style={styles.postsList}>
-            <FlatList
-              data={this.state.posteos}
-              keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item }) => (
-                <View style={styles.post}>
-                  <TouchableOpacity onPress={() => this.borrarPosteo(item.id)}>
-                    <Text>Borrar</Text>
-                  </TouchableOpacity>
-                  <Posteo navigation={this.props.navigation} data={item.data} id={item.id} />
-                </View>
-              )}
-            />
-          </View>
-        </View>
+        <Text style={styles.title}>Tus posteos</Text>
+        <Text style={styles.cantidadPosteos}>Cantidad de posteos: {this.state.posteos.length}</Text>
+        <FlatList
+          data={this.state.posteos}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.post}>
+              <Posteo navigation={this.props.navigation} data={item.data} id={item.id} />
+              <TouchableOpacity style={styles.deleteButton} onPress={() => this.borrarPosteo(item.id)}>
+                <Text style={styles.deleteButtonText}>Borrar</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        />
 
-        <View style={styles.changePasswordButton}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('CambioClave')}>
-            <Text>Cambiar Contraseña</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.changePasswordButton} onPress={this.handleChangePassword}>
+          <Text style={styles.buttonText}>Cambiar Contraseña</Text>
+        </TouchableOpacity>
 
-        <View style={styles.logout}>
-          <TouchableOpacity onPress={this.logout}>
-            <Text>Cerrar sesión</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.logoutButton} onPress={this.logout}>
+          <Text style={styles.buttonText}>Cerrar sesión</Text>
+        </TouchableOpacity>
 
         <Modal
           animationType="slide"
           transparent={true}
           visible={this.state.modalVisible}
-          onRequestClose={() => {
-            this.closeModal();
-          }}
+          onRequestClose={this.cerrarModal}
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>¿Estás seguro de que quieres borrar este posteo?</Text>
               <View style={styles.modalButtons}>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => this.cerrarModal()}
-                >
+                <Pressable style={[styles.button, styles.buttonClose]} onPress={this.cerrarModal}>
                   <Text style={styles.textStyle}>Cancelar</Text>
                 </Pressable>
-                <Pressable
-                  style={[styles.button, styles.buttonConfirm]}
-                  onPress={() => this.confirmarEliminacion(this.state.seleccionPosteoId)}
-                >
+                <Pressable style={[styles.button, styles.buttonConfirm]} onPress={() => this.confirmarEliminacion(this.state.seleccionPosteoId)}>
                   <Text style={styles.textStyle}>Borrar</Text>
                 </Pressable>
               </View>
@@ -182,66 +164,123 @@ export default class MiPerfil extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: '#9fc1ad',
+    padding: 20,
+    backgroundColor: '#f5f5f5',
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   profileInfo: {
     alignItems: 'center',
-    padding: 10,
-  },
-  mail: {
-    fontSize: 14,
-    color: 'gray',
-    textAlign: 'center',
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+    marginBottom: 20,
   },
   profileImage: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 10,
   },
   username: {
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginVertical: 10,
-    textAlign: 'center',
+    color: '#333',
+    marginBottom: 10,
+  },
+  mail: {
+    fontSize: 16,
+    color: 'gray',
+    marginBottom: 10,
   },
   minibio: {
-    fontSize: 14,
-    color: 'gray',
+    fontSize: 16,
+    color: '#777',
+    marginBottom: 10,
     textAlign: 'center',
   },
-  posts: {
-    flex: 2,
-    padding: 10,
+  editProfileButton: {
+    backgroundColor: '#5F866F',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+    marginTop: 10,
   },
-  postsList: {
+  editProfileButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  posts: {
     flex: 1,
   },
-  postsTitle: {
-    fontSize: 35,
-    fontWeight: 'bold',
-    fontFamily: 'calibri',
-    marginBottom: 15,
+  cantidadPosteos: {
+    fontSize: 18,
+    color: '#333',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   post: {
-    marginBottom: 15,
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+    marginBottom: 20,
   },
-  logout: {
-    marginVertical: 20,
-  },
-  cantidadPosteos: {
-    marginBottom: 15,
-  },
-  editProfileButton: {
-    color: 'black',
-    fontSize: 16,
-    fontWeight: 'bold',
-    textDecorationLine: 'none',
+  deleteButton: {
+    backgroundColor: '#FF6347',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 25,
     marginTop: 10,
+    alignItems: 'center',
+  },
+  deleteButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
   changePasswordButton: {
-    marginTop: 10,
+    backgroundColor: '#5F866F',
+    paddingVertical: 15,
+    paddingHorizontal: 25,
+    borderRadius: 25,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 5,
+    marginBottom: 20,
+  },
+  logoutButton: {
+    backgroundColor: '#FF6347',
+    paddingVertical: 15,
+    paddingHorizontal: 25,
+    borderRadius: 25,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   centeredView: {
     flex: 1,
@@ -256,10 +295,7 @@ const styles = StyleSheet.create({
     padding: 35,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
@@ -270,13 +306,14 @@ const styles = StyleSheet.create({
   },
   modalButtons: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     width: '100%',
   },
   button: {
-    borderRadius: 5,
+    borderRadius: 25,
     padding: 10,
     elevation: 2,
+    marginHorizontal: 10,
   },
   buttonClose: {
     backgroundColor: '#2196F3',

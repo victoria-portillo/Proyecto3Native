@@ -78,50 +78,61 @@ export default class PosteoNuevo extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 16,
-    backgroundColor: '#9fc1ad',
+    padding: 20,
+    backgroundColor: '#f5f5f5',
   },
   text: {
-    fontSize: 20,
+    fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  input: {
-    width: '100%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 8,
-    padding: 8,
-    marginBottom: 16,
+    color: '#333',
+    marginBottom: 20,
   },
   cameraContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: '100%',
+    height: 600, // Ajustamos la altura para que no sea demasiado grande
 
+    aspectRatio: 1, // Esto mantiene la relación de aspecto
+    borderRadius: 15,
+    overflow: 'hidden',
+    marginBottom: 20,
   },
   descriptionInput: {
-    width: '50%',
-    borderColor: 'gray',
+    width: '100%',
+    borderColor: '#ddd',
     borderWidth: 1,
-    borderRadius: 8,
-    padding: 10,
+    borderRadius: 25,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    backgroundColor: '#fff',
+    color: '#333',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 2,
     marginBottom: 20,
   },
   submitButton: {
     backgroundColor: '#5F866F',
-    padding: 12,
-    borderRadius: 8,
+    paddingVertical: 15,
+    paddingHorizontal: 25,
+    borderRadius: 25,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 5,
   },
   submitButtonText: {
     color: 'white',
-    fontSize: 18,
     fontWeight: 'bold',
+    fontSize: 18,
   },
 });

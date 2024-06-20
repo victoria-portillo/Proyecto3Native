@@ -20,54 +20,49 @@ class FormularioRegistro extends Component {
       <View>
         <Text style={styles.title}>Regístrate en Travelgram</Text>
         <View>
-          <TextInput
-            style={styles.input}
-            placeholder="Ingresar nombre de usuario"
-            placeholderTextColor="white"
-            keyboardType="default"
-            onChangeText={(text) =>
-              this.props.handleInputChange('nombre', text)
-            }
-          />
+   
           {errores.errorNombre !== '' && (
             <Text style={styles.errorText}>{errores.errorNombre}</Text>
           )}
-
-          <TextInput
-            style={styles.input}
-            placeholder="Ingrese su correo electrónico"
-            placeholderTextColor="white"
-            keyboardType="email-address"
-            onChangeText={(text) =>
-              this.props.handleInputChange('correo', text)
-            }
-          />
-          {errores.errorCorreo !== '' && (
-            <Text style={styles.errorText}>{errores.errorCorreo}</Text>
-          )}
-          {correoExiste !== '' && (
-            <Text style={styles.errorText}>{correoExiste}</Text>
-          )}
-
-          <TextInput
-            style={styles.input}
-            placeholder="Crea una biografia para tu perfil"
-            keyboardType="default"
-            value={biografia}
-            onChangeText={(text) =>
-              this.props.handleInputChange('biografia', text)
-            }
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Ingresa una contraseña"
-            keyboardType="default"
-            value={clave}
-            secureTextEntry={true}
-            onChangeText={(text) =>
-              this.props.handleInputChange('clave', text)
-            }
-          />
+<TextInput
+  style={styles.input}
+  placeholder="Ingresar nombre de usuario"
+  placeholderTextColor="#888"
+  keyboardType="default"
+  onChangeText={(text) =>
+    this.props.handleInputChange('nombre', text)
+  }
+/>
+<TextInput
+  style={styles.input}
+  placeholder="Ingrese su correo electrónico"
+  placeholderTextColor="#888"
+  keyboardType="email-address"
+  onChangeText={(text) =>
+    this.props.handleInputChange('correo', text)
+  }
+/>
+<TextInput
+  style={styles.input}
+  placeholder="Crea una biografía para tu perfil"
+  placeholderTextColor="#888"
+  keyboardType="default"
+  value={biografia}
+  onChangeText={(text) =>
+    this.props.handleInputChange('biografia', text)
+  }
+/>
+<TextInput
+  style={styles.input}
+  placeholder="Ingresa una contraseña"
+  placeholderTextColor="#888"
+  keyboardType="default"
+  value={clave}
+  secureTextEntry={true}
+  onChangeText={(text) =>
+    this.props.handleInputChange('clave', text)
+  }
+/>
           {errores.errorClave !== '' && (
             <Text style={styles.errorText}>{errores.errorClave}</Text>
           )}
@@ -96,44 +91,63 @@ class FormularioRegistro extends Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#f5f5f5',
+  },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 20,
+    color: '#333',
+    textAlign: 'center',
+    marginBottom: 30,
   },
   input: {
-    height: 40,
-    borderColor: 'gray',
+    height: 50,
+    borderColor: '#ddd',
     borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    color: 'white',
+    borderRadius: 25,
+    marginBottom: 20,
+    paddingHorizontal: 15,
+    backgroundColor: '#fff',
+    color: '#333',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 2,
   },
   btn: {
     backgroundColor: '#5F866F',
-    padding: 10,
-    borderRadius: 5,
+    padding: 15,
+    borderRadius: 25,
     alignItems: 'center',
   },
   buttonContainer: {
-    marginTop: 20,
+    marginTop: 30,
   },
   textBtn: {
     color: 'white',
     fontWeight: 'bold',
+    fontSize: 16,
   },
   textLink: {
     marginTop: 20,
     textAlign: 'center',
+    color: '#777',
   },
   link: {
-    color: 'blue',
+    color: '#5F866F',
+    fontWeight: 'bold',
   },
   errorText: {
     color: 'red',
     marginBottom: 10,
+    fontSize: 14,
+    textAlign: 'center',
   },
 });
 

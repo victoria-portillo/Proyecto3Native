@@ -52,33 +52,49 @@ export default class Comentarios extends Component {
     }
 }
 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10,
-        backgroundColor: '#9fc1ad',
+        padding: 20,
+        backgroundColor: '#f5f5f5',
     },
     title: {
-        fontSize: 20,
+        fontSize: 28,
         fontWeight: 'bold',
-        marginBottom: 10,
+        color: '#333',
+        marginBottom: 20,
+        textAlign: 'center',
     },
     commentsContainer: {
-        backgroundColor: '#5F866F',
-        borderRadius: 10,
-        padding: 10,
-        alignSelf: 'center',
-        width: '70%',
+        backgroundColor: '#fff',
+        borderRadius: 15,
+        padding: 20,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+        elevation: 3,
+        marginBottom: 20,
     },
     commentContainer: {
-        marginBottom: 10,
+        marginBottom: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ddd',
+        paddingBottom: 10,
     },
     ownerText: {
         fontWeight: 'bold',
-        color: 'black',
+        color: '#333',
         marginBottom: 5,
     },
     commentText: {
-        color: 'black',
+        color: '#555',
+    },
+    noCommentsText: {
+        color: '#555',
+        textAlign: 'center',
+        marginVertical: 20,
     },
 });
+

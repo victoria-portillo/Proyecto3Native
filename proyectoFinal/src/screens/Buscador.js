@@ -70,35 +70,53 @@ export default class Buscador extends Component {
               keyExtractor={(item) => item.id.toString()}
             />
             :
-            <Text style={styles.text}>No se han encontrado resultados</Text>
+            <Text style={styles.placeholderText}>No se han encontrado resultados</Text>
         ) : (
-          <Text style={styles.text}>Busca un usuario</Text>
+          <Text style={styles.placeholderText}>Busca un usuario</Text>
         )}
       </View>
     );
   }
 }
 
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: '#9fc1ad',
-    },
-    input: {
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingLeft: 10,
-    },
-    mensaje: {
-        color: 'red',
-        marginBottom: 10,
-    },
-    resultadoItem: {
-        padding: 10,
-        borderBottomWidth: 1,
-        borderColor: '#ccc',
-    },
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#f5f5f5',
+    alignItems: 'center', // Centramos el contenido horizontalmente
+  },
+  usuarioItem: {
+    padding: 15,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  userName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  userOwner: {
+    fontSize: 16,
+    color: '#777',
+  },
+  noResultsText: {
+    color: '#333',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 20,
+  },
+  placeholderText: {
+    color: '#333',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 20,
+  },
 });

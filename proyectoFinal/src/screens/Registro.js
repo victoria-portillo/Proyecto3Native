@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { auth, db } from '../firebase/config';import FormularioRegistro from '../components/FormularioRegistro';
+import { auth, db } from '../firebase/config';
+import FormularioRegistro from '../components/FormularioRegistro';
 import CamaraPosteo from '../components/CamaraPosteo';
 
 export default class Registro extends Component {
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         padding: 20,
-        backgroundColor: '#9fc1ad',
+        backgroundColor: 'white',
         textAlign: 'center',
     },
 });

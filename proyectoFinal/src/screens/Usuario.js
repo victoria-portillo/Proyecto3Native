@@ -92,49 +92,68 @@ export default class Usuario extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#f5f5f5',
+        padding: 20,
+    },
+    profileInfo: {
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        backgroundColor: '#9fc1ad',
-      },
-      profileInfo: {
-        alignItems: 'center',
-        padding: 10,
-      },
-      username: {
-        fontSize: 25,
+        marginBottom: 20,
+        backgroundColor: '#fff',
+        padding: 20,
+        borderRadius: 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+        elevation: 3,
+    },
+    username: {
+        fontSize: 24,
         fontWeight: 'bold',
+        color: '#333',
+        marginBottom: 10,
         textAlign: 'center',
-      },
-      mail: {
-        fontSize: 14,
-        color: 'black',
-        textAlign: 'center',
-      },
-      minibio: {
-        fontSize: 14,
-        color: 'balck',
-        textAlign: 'center',
-      },
-      posts: {
-        flex: 2,
-        padding: 10,
-      },
-      postsTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        fontFamily: 'calibri',
-        marginBottom: 15,
-      },
-      cantidadPosteos: {
-        marginBottom: 15,
-      },
-      post: {
-        marginBottom: 15,
-      },
-      img:{
+    },
+    profileImage: {
         width: 200,
         height: 200,
         borderRadius: 100,
-      }
-   
-})
+        marginBottom: 10,
+    },
+    email: {
+        fontSize: 16,
+        color: 'gray',
+        marginBottom: 10,
+        textAlign: 'center',
+    },
+    biografia: {
+        fontSize: 16,
+        color: '#777',
+        textAlign: 'center',
+    },
+    postsContainer: {
+        flex: 1,
+    },
+    postsTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#333',
+        marginBottom: 15,
+    },
+    postCount: {
+        fontSize: 16,
+        color: '#333',
+        marginBottom: 15,
+    },
+    post: {
+        backgroundColor: '#fff',
+        padding: 20,
+        borderRadius: 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+        elevation: 3,
+        marginBottom: 20,
+    },
+});

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { db, auth } from '../firebase/config';
+import { db, auth } from '../firebase/config.js';
 import ContadorLikes from './ContadorLikes.js'; 
 
 export default class Posteo extends Component {
@@ -57,35 +57,41 @@ export default class Posteo extends Component {
     }
 }
 
+
+
 const styles = StyleSheet.create({
+    postContainer: {
+        backgroundColor: '#fff',
+        borderRadius: 15,
+        padding: 15,
+        marginBottom: 60, // Incrementado para más espacio entre los posteos
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+        elevation: 3,
+    },
+    ownerName: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#333',
+        marginBottom: 10,
+    },
     img: {
         width: '100%',
         height: 200,
-        borderRadius: 10,
-        marginBottom: 10,
-    },
-    posts: {
-        flex: 1,
-        backgroundColor: '#fff',
-        padding: 15,
-        borderRadius: 10,
-        marginBottom: 20,
-    },
-    ownerName: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        marginBottom: 5,
-        color: '#333',
+        borderRadius: 15,
+        marginBottom: 15,
     },
     description: {
-        fontSize: 14,
-        color: '555',
+        fontSize: 16,
+        color: '#555',
         marginBottom: 10,
     },
     commentText: {
-        color: '#5F866F',
+        color: '#000', // Cambiado a negro
         fontSize: 16,
         fontWeight: 'bold',
-        padding: 15,
+        marginBottom: 20,
     },
 });

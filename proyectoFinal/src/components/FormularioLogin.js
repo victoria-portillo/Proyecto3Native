@@ -53,9 +53,10 @@ export default class FormularioLogin extends Component {
             <View style={styles.productswrapper}>
                 <Text style={styles.productstitle}>Inicia Sesión</Text>
                 <View style={styles.registro}>
-                    <TextInput
-                        style={styles.control}
+                <TextInput
+                        style={styles.input}
                         placeholder="Ingresa tu email"
+                        placeholderTextColor="#888"
                         keyboardType="email-address"
                         value={this.state.correo}
                         onChangeText={(text) => {
@@ -67,9 +68,10 @@ export default class FormularioLogin extends Component {
                         <Text style={styles.errorMessage}>{this.state.errorCorreo}</Text>
                     )}
 
-                    <TextInput
-                        style={styles.control}
+                        <TextInput
+                        style={styles.input}
                         placeholder="Ingresa tu contraseña"
+                        placeholderTextColor="#888"
                         keyboardType="default"
                         value={this.state.clave}
                         secureTextEntry={true}
@@ -86,16 +88,17 @@ export default class FormularioLogin extends Component {
                         <Text style={styles.errorMessage}>{this.state.generalError}</Text>
                     )}
 
-                    <TouchableOpacity
-                        onPress={() => this.loguearUsuario(this.state.correo, this.state.clave)}
-                        disabled={!this.state.allFieldsCompleted}
-                        style={[
-                            styles.button,
-                            !this.state.allFieldsCompleted && styles.buttonDisabled,
-                        ]}
-                    >
-                        <Text style={styles.buttonText}>INICIAR SESIÓN</Text>
-                    </TouchableOpacity>
+<TouchableOpacity
+    onPress={() => this.loguearUsuario(this.state.correo, this.state.clave)}
+    disabled={!this.state.allFieldsCompleted}
+    style={[
+        styles.btn,
+        !this.state.allFieldsCompleted && styles.btnDisabled,
+    ]}
+>
+    <Text style={styles.textBtn}>INICIAR SESIÓN</Text>
+</TouchableOpacity>
+
 
                     <Text style={styles.textLink}>
                         ¿Aún no tienes una cuenta?{' '}
@@ -111,49 +114,69 @@ export default class FormularioLogin extends Component {
         );
     }
 }
-
 const styles = StyleSheet.create({
-    productswrapper: {
+    container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        padding: 20,
+        backgroundColor: '#f5f5f5',
     },
-    productstitle: {
-        fontSize: 24,
-        marginBottom: 20,
+    title: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#333',
+        textAlign: 'center',
+        marginBottom: 30,
     },
-    registro: {
-        width: '80%',
-    },
-    control: {
+    input: {
+        height: 50,
+        borderColor: '#ddd',
         borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 10,
-        marginBottom: 10,
+        borderRadius: 25,
+        marginBottom: 20,
+        paddingHorizontal: 15,
+        backgroundColor: '#fff',
+        color: '#333',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+        elevation: 2,
     },
-    errorMessage: {
-        color: 'red',
-        marginBottom: 10,
-    },
-    button: {
-        backgroundColor: '#007bff',
-        padding: 10,
+    btn: {
+        backgroundColor: '#5F866F',
+        padding: 15,
+        borderRadius: 25,
         alignItems: 'center',
-        marginBottom: 10,
+        justifyContent: 'center',
+        marginTop: 20,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 5,
     },
-    buttonDisabled: {
+    btnDisabled: {
         backgroundColor: '#aaa',
     },
-    buttonText: {
-        color: '#fff',
+    textBtn: {
+        color: 'white',
+        fontWeight: 'bold',
         fontSize: 16,
     },
     textLink: {
-        textAlign: 'center',
         marginTop: 20,
+        textAlign: 'center',
+        color: '#777',
     },
-    textLinkBold: {
+    link: {
+        color: '#5F866F',
         fontWeight: 'bold',
-        color: '#007bff',
+    },
+    errorText: {
+        color: 'red',
+        marginBottom: 10,
+        fontSize: 14,
+        textAlign: 'center',
     },
 });

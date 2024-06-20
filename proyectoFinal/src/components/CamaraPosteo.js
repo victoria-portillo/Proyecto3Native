@@ -66,7 +66,7 @@ export default class CamaraPosteo extends Component {
                 <TouchableOpacity
                     onPress={() => this.tomarFoto()}
                 >
-                    <Text style={styles.textoAceptar}>Tomar foto</Text>
+                    <Text style={styles.btn}>Tomar foto</Text>
                 </TouchableOpacity>
             </>
             : this.state.permisos && this.state.mostrarCamara === false ?
@@ -79,14 +79,14 @@ export default class CamaraPosteo extends Component {
                     <TouchableOpacity
                         onPress={()=> this.aceptarFoto()}
                     >
-                        <Text style={styles.textoAceptar}>
+                        <Text style={styles.btn}>
                             Aceptar Foto
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={()=> this.rechazarFoto()}
                     >
-                        <Text style={styles.textoAceptar}>
+                        <Text style={styles.btn}>
                             Rechazar Foto
                         </Text>
                     </TouchableOpacity>
@@ -100,25 +100,42 @@ export default class CamaraPosteo extends Component {
     )
   }
 }
-
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f5f5f5',
     },
     camara: {
-        flex:1,
-        width: 500, 
+        flex: 1,
+        width: '100%',
+        borderRadius: 15,
+        overflow: 'hidden',
+        marginBottom: 20,
     },
-    img:{
+    img: {
         height: 500,
         width: 500,
+        borderRadius: 15,
+        marginBottom: 20,
     },
-    textoAceptar: {
+    btn: {
         backgroundColor: '#5F866F',
-        padding: 10,
-        borderRadius: 5,
+        paddingVertical: 15,
+        paddingHorizontal: 25,
+        borderRadius: 25,
         alignItems: 'center',
-        marginBottom: 10,
-        marginTop: 15,
-    }
-})
+        marginBottom: 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 5,
+    },
+    textoBtn: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
+});
