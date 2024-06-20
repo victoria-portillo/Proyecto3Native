@@ -1,6 +1,7 @@
 import {View, StyleSheet} from 'react-native'
 import React, { Component } from 'react'
 import FormularioLogin from '../components/FormularioLogin'
+import { auth } from '../firebase/config'
 
 
 export default class Login extends Component {
@@ -8,6 +9,13 @@ export default class Login extends Component {
     super(props)
   }
 
+  componentDidMount(){
+    auth.onAuthStateChanged(( user )=> {
+      if(user !== null){
+        this.props.navigation.navigate('TabNavigation')
+      }
+    })
+  }
  
 
   render() {
