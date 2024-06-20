@@ -20,7 +20,7 @@ export default class Registro extends Component {
             },
             correoExiste: '',
             paso1: true,
-            usuarioId: ''
+            usuarioId: '',
         };
     }
 
@@ -78,6 +78,7 @@ export default class Registro extends Component {
                                 },
                                 correoExiste: '',
                             });
+
                         })
                 })
                 .catch((err) => {
@@ -86,7 +87,7 @@ export default class Registro extends Component {
                 });
         }
     };
-
+    
     actualizarFotourl = (url) => {
         this.setState({ fotoPerfil: url }, () => {
             console.log('state log', this.state)
@@ -140,6 +141,7 @@ export default class Registro extends Component {
                     <CamaraPosteo
                         actualizarFotourl={this.actualizarFotourl}
                         guardarImagen={this.guardarImagen}
+
                     />
                 )}
             </View>

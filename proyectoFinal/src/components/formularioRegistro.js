@@ -17,56 +17,60 @@ class FormularioRegistro extends Component {
     } = this.props.state;
 
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.title}>Regístrate en Travelgram</Text>
         <View>
-   
           {errores.errorNombre !== '' && (
             <Text style={styles.errorText}>{errores.errorNombre}</Text>
           )}
-<TextInput
-  style={styles.input}
-  placeholder="Ingresar nombre de usuario"
-  placeholderTextColor="#888"
-  keyboardType="default"
-  onChangeText={(text) =>
-    this.props.handleInputChange('nombre', text)
-  }
-/>
-<TextInput
-  style={styles.input}
-  placeholder="Ingrese su correo electrónico"
-  placeholderTextColor="#888"
-  keyboardType="email-address"
-  onChangeText={(text) =>
-    this.props.handleInputChange('correo', text)
-  }
-/>
-<TextInput
-  style={styles.input}
-  placeholder="Crea una biografía para tu perfil"
-  placeholderTextColor="#888"
-  keyboardType="default"
-  value={biografia}
-  onChangeText={(text) =>
-    this.props.handleInputChange('biografia', text)
-  }
-/>
-<TextInput
-  style={styles.input}
-  placeholder="Ingresa una contraseña"
-  placeholderTextColor="#888"
-  keyboardType="default"
-  value={clave}
-  secureTextEntry={true}
-  onChangeText={(text) =>
-    this.props.handleInputChange('clave', text)
-  }
-/>
+          <TextInput
+            style={styles.input}
+            placeholder="Ingresar nombre de usuario"
+            placeholderTextColor="#888"
+            keyboardType="default"
+            onChangeText={(text) =>
+              this.props.handleInputChange('nombre', text)
+            }
+          />
+          {errores.errorCorreo !== '' && (
+            <Text style={styles.errorText}>{errores.errorCorreo}</Text>
+          )}
+          {correoExiste !== '' && (
+            <Text style={styles.errorText}>{correoExiste}</Text>
+          )}
+          <TextInput
+            style={styles.input}
+            placeholder="Ingrese su correo electrónico"
+            placeholderTextColor="#888"
+            keyboardType="email-address"
+            onChangeText={(text) =>
+              this.props.handleInputChange('correo', text)
+            }
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Crea una biografía para tu perfil"
+            placeholderTextColor="#888"
+            keyboardType="default"
+            value={biografia}
+            onChangeText={(text) =>
+              this.props.handleInputChange('biografia', text)
+            }
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Ingresa una contraseña"
+            placeholderTextColor="#888"
+            keyboardType="default"
+            value={clave}
+            secureTextEntry={true}
+            onChangeText={(text) =>
+              this.props.handleInputChange('clave', text)
+            }
+          />
           {errores.errorClave !== '' && (
             <Text style={styles.errorText}>{errores.errorClave}</Text>
           )}
-
           <Text style={styles.textLink}>
             ¿Ya tienes una cuenta?
             <TouchableOpacity
@@ -91,6 +95,7 @@ class FormularioRegistro extends Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -125,29 +130,6 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 25,
     alignItems: 'center',
-  },
-  buttonContainer: {
-    marginTop: 30,
-  },
-  textBtn: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  textLink: {
-    marginTop: 20,
-    textAlign: 'center',
-    color: '#777',
-  },
-  link: {
-    color: '#5F866F',
-    fontWeight: 'bold',
-  },
-  errorText: {
-    color: 'red',
-    marginBottom: 10,
-    fontSize: 14,
-    textAlign: 'center',
   },
 });
 

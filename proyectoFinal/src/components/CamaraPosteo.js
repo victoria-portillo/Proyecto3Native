@@ -38,6 +38,8 @@ export default class CamaraPosteo extends Component {
             .then(resp =>{
                 ref.getDownloadURL()
                 .then((url)=> this.props.actualizarFotourl(url))
+                this.props.onFotoSubida();
+
             })
             .catch(err => console.log(err))
         })
