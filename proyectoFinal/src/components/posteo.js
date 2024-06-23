@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { db, auth } from '../firebase/config.js';
 import ContadorLikes from './ContadorLikes.js'; 
 
@@ -32,6 +32,8 @@ export default class Posteo extends Component {
 
     render() {
         const { data } = this.props;
+        const comentarios = data.comentarios || []; 
+
 
         return (
             <View style={styles.posts}>
@@ -51,6 +53,16 @@ export default class Posteo extends Component {
                     <TouchableOpacity onPress={() => this.irComentarios()}>
                         <Text style={styles.commentText}>{data.comentarios ? data.comentarios.length : 0} Comentarios</Text>
                     </TouchableOpacity>
+
+                    <FlatList
+                        data={comentarios.slice(-4)} 
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) => (
+                            <View style={styles.commentContainer}>
+                                <Text style={styles.comment}>{item.comentario}</Text>
+                            </View>
+                        )}
+                    />
                 </View>
             </View>
         );
@@ -64,7 +76,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 15,
         padding: 15,
-        marginBottom: 60, // Incrementado para más espacio entre los posteos
+        marginBottom: 60, 
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
@@ -89,9 +101,14 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     commentText: {
-        color: '#000', // Cambiado a negro
+        color: '#000',
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 20,
+    },
+    comment: {
+        color: '#555',
+        fontSize: 14,
+        marginBottom: 5,
     },
 });
