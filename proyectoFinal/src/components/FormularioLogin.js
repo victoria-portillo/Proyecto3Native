@@ -10,7 +10,6 @@ export default class FormularioLogin extends Component {
             correo: '',
             clave: '',
             errorCorreo: '',
-            claveError: '',
             generalError: '',
             allFieldsCompleted: false,
         };
@@ -19,7 +18,6 @@ export default class FormularioLogin extends Component {
     loguearUsuario = (correo, clave) => {
         this.setState({
             errorCorreo: '',
-            claveError: '',
             generalError: '',
         });
 
@@ -34,10 +32,8 @@ export default class FormularioLogin extends Component {
                 .catch((error) => {
                     if (error.code === 'auth/invalid-email') {
                         this.setState({ errorCorreo: 'El correo electrónico es incorrecto.' });
-                    } else if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-                        this.setState({ claveError: 'Contraseña incorrecta. Por favor, inténtalo de nuevo.' });
                     } else {
-                        this.setState({ generalError: 'Error al iniciar sesión. Por favor, inténtalo de nuevo.' });
+                        this.setState({ generalError: 'La contraseña es incorrecta.' });
                     }
                 });
         }
