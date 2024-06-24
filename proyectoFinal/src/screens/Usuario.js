@@ -54,8 +54,8 @@ export default class Usuario extends Component {
                             <Text style={styles.username}>{item.data.name}</Text>
                             {item.data.fotoPerfil != '' ?
                                 <Image
-                                    source={item.data.profileImage}
-                                    style={styles.img}
+                                    source={item.data.fotoPerfil}
+                                    style={styles.fotoPerfil}
                                     resizeMode='contain'
                                 />
                                 :
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         textAlign: 'center',
     },
-    profileImage: {
+    fotoPerfil: {
         width: 200,
         height: 200,
         borderRadius: 100,
