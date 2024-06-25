@@ -94,13 +94,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   cameraContainer: {
-    width: '100%',
-    height: 600, // Ajustamos la altura para que no sea demasiado grande
-
-    aspectRatio: 1, // Esto mantiene la relación de aspecto
-    borderRadius: 15,
-    overflow: 'hidden',
-    marginBottom: 20,
+    flex:1,
+        width: '80%', 
+        aspectRatio: 1, 
+        alignSelf: 'center', 
+        borderRadius: 15,
+        overflow: 'hidden',
+        marginBottom: 20,
+        marginTop: 25, 
   },
   descriptionInput: {
     width: '100%',

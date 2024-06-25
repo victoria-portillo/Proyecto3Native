@@ -47,7 +47,7 @@ export default class FormularioLogin extends Component {
     render() {
         return (
             <View style={styles.productswrapper}>
-                <Text style={styles.productstitle}>Inicia Sesión</Text>
+                <Text style={styles.title}>Inicia Sesión</Text>
                 <View style={styles.registro}>
                 <TextInput
                         style={styles.input}
@@ -99,7 +99,7 @@ export default class FormularioLogin extends Component {
                     <Text style={styles.textLink}>
                         ¿Aún no tienes una cuenta?{' '}
                         <Text
-                            style={styles.textLinkBold}
+                            style={styles.textLink}
                             onPress={() => this.props.navigation.navigate('Registro')}
                         >
                             Registrarse
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         padding: 20,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: 'grey',
     },
     title: {
         fontSize: 28,
@@ -156,14 +156,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#aaa',
     },
     textBtn: {
-        color: 'white',
+        color: 'black',
         fontWeight: 'bold',
         fontSize: 16,
     },
     textLink: {
-        marginTop: 20,
+        color: 'black',
+        marginTop: 35,
         textAlign: 'center',
-        color: '#777',
+        
     },
     link: {
         color: '#5F866F',

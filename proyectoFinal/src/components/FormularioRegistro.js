@@ -125,8 +125,14 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 2,
   },
+  textBtn: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'center',
+  },
   btn: {
-    backgroundColor: '#5F866F',
+    backgroundColor: 'grey',
     padding: 15,
     borderRadius: 25,
     alignItems: 'center',

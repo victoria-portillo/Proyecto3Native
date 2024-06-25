@@ -1,0 +1,7 @@
+Se hicieron las electivas de:
+
+Mostrar ultimos 4 comentarios en la home
+
+Confirmar borrado de posteo 
+
+Modificar informacion de mi perfil: contraseña, usuario, .

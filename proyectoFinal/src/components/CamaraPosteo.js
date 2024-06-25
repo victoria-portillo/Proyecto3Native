@@ -61,7 +61,7 @@ export default class CamaraPosteo extends Component {
             this.state.permisos && this.state.mostrarCamara ?
             <>
                 <Camera
-                    style= {styles.camara}
+                    style= {styles.camaraContainer}
                     type={Camera.Constants.Type.back}
                     ref={(metodosDeCamara)=> this.metodosDeCamara = metodosDeCamara}
                 />
@@ -102,28 +102,50 @@ export default class CamaraPosteo extends Component {
     )
   }
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#f5f5f5',
+        paddingHorizontal: 20, 
     },
-    camara: {
-        flex: 1,
-        width: '100%',
+    camaraContainer: {
+        flex:1,
+        width: '80%', 
+        aspectRatio: 1, 
+        alignSelf: 'center', 
         borderRadius: 15,
         overflow: 'hidden',
         marginBottom: 20,
+        marginTop: 25, 
+    },
+    camara: {
+        flex: 1,
+        aspectRatio: 1, 
+        backgroundColor: 'transparent',
     },
     img: {
-        height: 500,
-        width: 500,
+        flex:1,
+        width: '80%', 
+        aspectRatio: 1,
+        alignSelf: 'center',
         borderRadius: 15,
-        marginBottom: 20,
+        overflow: 'hidden',
+        marginBottom: 5,
+        marginTop: 5,
+    },
+    btnContainer: {
+        flex:1,
+        flexDirection: 'row',
+        justifyContent: 'space-around', 
+        width: '100%', 
+        paddingHorizontal: 20,
+        marginTop: 10, 
     },
     btn: {
-        backgroundColor: '#5F866F',
+        backgroundColor: 'grey',
         paddingVertical: 15,
         paddingHorizontal: 25,
         borderRadius: 25,
@@ -134,10 +156,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 5,
         elevation: 5,
+        minWidth: 120, 
     },
     textoBtn: {
-        color: 'white',
-        fontWeight: 'bold',
         fontSize: 16,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center',
     },
 });

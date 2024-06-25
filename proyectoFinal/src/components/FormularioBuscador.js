@@ -20,11 +20,12 @@ export default class FormularioBuscador extends Component {
       <View style={styles.container}>
         <TextInput
           style={styles.busqueda}
-          placeholder="Búsqueda de usuarios"
+          placeholder="Ingresa un usuario o correo para buscar"
           name="busqueda"
           onChangeText={(text) => this.cambios(text)}
         />
-        <Button style={styles.button}
+        <Button 
+        style={styles.button}
           title="Buscar"
           onPress={(e) => this.evitarSubmit(e)}
         />
@@ -58,17 +59,20 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: '100%',
   },
+  
   button: {
-    backgroundColor: '#5F866F', // Color verde consistente con otros botones
-    paddingVertical: 15,
-    paddingHorizontal: 25,
-    borderRadius: 25,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 5,
+    backgroundColor: 'grey',
+        paddingVertical: 15,
+        paddingHorizontal: 25,
+        borderRadius: 25,
+        alignItems: 'center',
+        marginBottom: 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 5,
+        minWidth: 120, 
   },
   buttonText: {
     color: 'white',
